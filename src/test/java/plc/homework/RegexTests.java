@@ -46,7 +46,21 @@ public class RegexTests {
         return Stream.of(
                 Arguments.of("Alphanumeric", "thelegend27@gmail.com", true),
                 Arguments.of("UF Domain", "otherdomain@ufl.edu", true),
+                Arguments.of("Double Domain", "grosstre000@myplace.wcs.edu", true),
+                Arguments.of("Address Numbers", "looktheresnums@w0w.org", true),
+                Arguments.of("Amazom", "wearerealamazon@amazom.com", true),
+                Arguments.of("Blank Address", "@nothing.biz", false),
+                Arguments.of("Single Address", "i@almostnothing.biz", false),
+                Arguments.of("No Domain Address", "thereisnothingafterthis@", false),
+                Arguments.of("Space Before", "broken email@aol.com", false),
+                Arguments.of("Space After", "brokenover@comcast. net", false),
+                Arguments.of("Long Domain", "longdomain@com.google", false),
+                Arguments.of("Short Domain", "shdo@top.g", false),
+                Arguments.of("Domain Numbers", "domnums@ufl.0w0", false),
+                Arguments.of("Domain Symbols", "domainsymbols@yahoo.(+)", false),
+                Arguments.of("Capital Domain", "BIGDOMAIN@ufl.AHH", false),
                 Arguments.of("Missing Domain Dot", "missingdot@gmailcom", false),
+                Arguments.of("Double At Symbol", "repeatrepeat@@repeat.rep", false),
                 Arguments.of("Symbols", "symbols#$%@gmail.com", false)
         );
     }
