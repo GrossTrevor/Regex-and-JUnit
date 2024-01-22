@@ -49,6 +49,9 @@ public class RegexTests {
                 Arguments.of("Double Domain", "grosstre000@myplace.wcs.edu", true),
                 Arguments.of("Address Numbers", "looktheresnums@w0w.org", true),
                 Arguments.of("Amazom", "wearerealamazon@amazom.com", true),
+                Arguments.of("Blank", "", false),
+                Arguments.of("Just Symbols", "@.", false),
+                Arguments.of("Just Domain", "@.woo", false),
                 Arguments.of("Blank Address", "@nothing.biz", false),
                 Arguments.of("Single Address", "i@almostnothing.biz", false),
                 Arguments.of("No Domain Address", "thereisnothingafterthis@", false),
@@ -99,21 +102,32 @@ public class RegexTests {
     @ParameterizedTest
     @MethodSource
     public void testDecimalRegex(String test, String input, boolean success) {
-        throw new UnsupportedOperationException(); //TODO
+        test(input, Regex.DECIMAL, success);
     }
 
     public static Stream<Arguments> testDecimalRegex() {
-        throw new UnsupportedOperationException(); //TODO
+        return Stream.of(
+                Arguments.of("Regular Decimal", "10100.001", true),
+                Arguments.of("Negative One", "-1.0", true),
+                Arguments.of("One No Decimal", "1", false),
+                Arguments.of("Point Five No Leading Zero", ".5", false)
+        );
     }
 
     @ParameterizedTest
     @MethodSource
     public void testStringRegex(String test, String input, boolean success) {
-        throw new UnsupportedOperationException(); //TODO
+        test(input, Regex.STRING, success);
     }
 
     public static Stream<Arguments> testStringRegex() {
-        throw new UnsupportedOperationException(); //TODO
+        return Stream.of(
+                Arguments.of("Empty", "\"\"", true),
+                Arguments.of("Classic HW", "\"Hello, World!\"", true),
+                Arguments.of("Good Escape", "\"1\\t2\"", true),
+                Arguments.of("Missing Quote", "\"unterminated", false),
+                Arguments.of("Invalid Escape", "\"invalid\\escape\"", false)
+        );
     }
 
     /**
