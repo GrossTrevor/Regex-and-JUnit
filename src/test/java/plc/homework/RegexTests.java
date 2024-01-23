@@ -79,8 +79,14 @@ public class RegexTests {
                 // what have eleven letters and starts with gas?
                 Arguments.of("11 Characters", "automobiles", true),
                 Arguments.of("13 Characters", "i<3pancakes13", true),
+                Arguments.of("15 Characters", "i<3pancakes--15", true),
+                Arguments.of("17 Characters", "i<3pancakes----17", true),
+                Arguments.of("19 Characters", "i<3pancakes------19", true),
+                Arguments.of("Empty String", "", false),
                 Arguments.of("5 Characters", "5five", false),
-                Arguments.of("14 Characters", "i<3pancakes14!", false)
+                Arguments.of("14 Characters", "i<3pancakes14!", false),
+                Arguments.of("18 Characters", "i<3pancakes14!!!!!", false),
+                Arguments.of("21 Characters", "this is a long string", false)
         );
     }
 
@@ -92,10 +98,17 @@ public class RegexTests {
 
     public static Stream<Arguments> testCharacterListRegex() {
         return Stream.of(
+                Arguments.of("Empty Set", "[]", true),
                 Arguments.of("Single Element", "['a']", true),
+                Arguments.of("Number", "['0']", true),
+                Arguments.of("Symbol", "['$']", true),
                 Arguments.of("Multiple Elements", "['a','b','c']", true),
+                Arguments.of("Escapes", "['\u000B', '\n']", true),
+                Arguments.of("Double Element", "['aa']", false),
+                Arguments.of("One Bracket", "['a','b','c'", false),
                 Arguments.of("Missing Brackets", "'a','b','c'", false),
-                Arguments.of("Missing Commas", "['a' 'b' 'c']", false)
+                Arguments.of("Missing Commas", "['a' 'b' 'c']", false),
+                Arguments.of("Empty and Newline", "['', '', '\n']", false)
         );
     }
 
@@ -107,10 +120,16 @@ public class RegexTests {
 
     public static Stream<Arguments> testDecimalRegex() {
         return Stream.of(
-                Arguments.of("Regular Decimal", "10100.001", true),
-                Arguments.of("Negative One", "-1.0", true),
-                Arguments.of("One No Decimal", "1", false),
-                Arguments.of("Point Five No Leading Zero", ".5", false)
+                Arguments.of("Single Digit Decimal", "1.0", true),
+                Arguments.of("Multiple Digit Decimal", "10100.001", true),
+                Arguments.of("Single Decimal Leading Zero", "0.5", true),
+                Arguments.of("Negative Decimal", "-1.0", true),
+                Arguments.of("Zero Zero", "0.0", true),
+                Arguments.of("Single Integer", "1", false),
+                Arguments.of("Decimal No Integers", "1.", false),
+                Arguments.of("Leading Zero Multiple Digit Decimal", "010100.001", false),
+                Arguments.of("Decimal Double Leading Zero", "00.5", false),
+                Arguments.of("Decimal No Leading Zero", ".5", false)
         );
     }
 
@@ -124,8 +143,15 @@ public class RegexTests {
         return Stream.of(
                 Arguments.of("Empty", "\"\"", true),
                 Arguments.of("Classic HW", "\"Hello, World!\"", true),
+                Arguments.of("Numbers", "\"1234567890\"", true),
+                Arguments.of("Symbols", "\"!@#$%^&*()\"", true),
                 Arguments.of("Good Escape", "\"1\\t2\"", true),
-                Arguments.of("Missing Quote", "\"unterminated", false),
+                Arguments.of("All Escapes", "\"\\b\\n\\r\\t\\'\\u000B\"", true),
+                Arguments.of("Extra Quote", "\"termi\"nated\"", true),
+                Arguments.of("Missing First Quote", "unterminated\"", false),
+                Arguments.of("Missing Second Quote", "\"unterminated", false),
+                Arguments.of("No Quotes", "no quotes", false),
+                Arguments.of("Single Quotes", "'single quotes'", false),
                 Arguments.of("Invalid Escape", "\"invalid\\escape\"", false)
         );
     }

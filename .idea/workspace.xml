@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="655874e6-781a-4862-b2d7-6e40eb15320b" name="Changes" comment="regex testing part 1">
+    <list default="true" id="655874e6-781a-4862-b2d7-6e40eb15320b" name="Changes" comment="working regexes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plc/homework/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plc/homework/Regex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/plc/homework/RegexTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/plc/homework/RegexTests.java" afterDir="false" />
@@ -220,7 +220,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705769871811</updated>
-      <workItem from="1705769872850" duration="21818000" />
+      <workItem from="1705769872850" duration="29374000" />
     </task>
     <task id="LOCAL-00001" summary="regex testing part 1">
       <option name="closed" value="true" />
@@ -230,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705774366837</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="working regexes">
+      <option name="closed" value="true" />
+      <created>1705959934778</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705959934778</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +247,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="regex testing part 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="regex testing part 1" />
+    <MESSAGE value="working regexes" />
+    <option name="LAST_COMMIT_MESSAGE" value="working regexes" />
   </component>
 </project>
